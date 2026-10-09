@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Sem esta meta tag o celular renderiza a página "encolhida" e o layout responsivo não funciona -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Biblioteca Digital UniFECAF: livros, materiais acadêmicos e conteúdos de apoio à aprendizagem.">
+  <title>Biblioteca Digital UniFECAF</title>
+  <!-- Fonte Poppins (mesma família visual da UniFECAF) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Link de atalho para quem navega por teclado ou leitor de tela pular o menu -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===== CABEÇALHO + NAVEGAÇÃO ===== -->
+  <header class="cabecalho">
+    <nav class="menu" aria-label="Navegação principal">
+      <ul class="menu__lista">
+        <li><a class="menu__link menu__link--ativo" href="#biblioteca" aria-current="page">Biblioteca</a></li>
+        <li><a class="menu__link" href="#livros">Livros</a></li>
+        <li><a class="menu__link" href="#unidades">Unidades</a></li>
+        <li><a class="menu__link" href="#contatos">Contatos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===== BANNER PRINCIPAL ===== -->
+    <section class="banner banner--principal" id="biblioteca" aria-label="Destaque da biblioteca">
+      <!-- Único <h1> da página: a hierarquia de títulos começa aqui (h1 > h2 > h3) -->
+      <h1 class="banner__titulo">Biblioteca Digital UniFECAF</h1>
+      <img class="banner__imagem" src="assets/imagens/banner-biblioteca.jpg"
+        alt="Salão de biblioteca histórica com teto pintado, estantes de madeira e piso de tábuas">
+    </section>
+
+    <!-- ===== SOBRE A NOSSA BIBLIOTECA ===== -->
+    <section class="sobre" aria-labelledby="titulo-sobre">
+      <div class="container">
+        <h2 class="secao__titulo" id="titulo-sobre">Sobre a nossa biblioteca</h2>
+
+        <div class="sobre__conteudo">
+          <p>
+            A Biblioteca Digital UniFECAF reúne livros, artigos e materiais de apoio em um só lugar,
+            para que você estude no seu ritmo, de onde estiver. O acervo é pensado para acompanhar
+            cada etapa da jornada acadêmica, da graduação à pós-graduação.
+          </p>
+
+          <img class="sobre__imagem" src="assets/imagens/sobre-leitura.jpg"
+            alt="Estudante de óculos lendo um livro entre estantes cheias">
+
+          <p>
+            Aqui você encontra categorias organizadas, destaques da semana e informações sobre os
+            serviços oferecidos, como empréstimo, orientação para pesquisa e espaços de estudo
+            nas unidades. Tudo com navegação simples e acessível em computadores e smartphones.
+          </p>
+        </div>
+
+        <!-- Galeria: lista de figuras, pois são imagens que ilustram o conteúdo -->
+        <ul class="galeria">
+          <li><img src="assets/imagens/galeria-1.jpg" alt="Parede de estantes de madeira com livros organizados"></li>
+          <li><img src="assets/imagens/galeria-2.jpg" alt="Estudantes concentrados em uma mesa de estudo da biblioteca"></li>
+          <li><img src="assets/imagens/galeria-3.jpg" alt="Pessoa pesquisando em um notebook sobre uma mesa de madeira"></li>
+          <li><img src="assets/imagens/galeria-4.jpg" alt="Canto de leitura com poltrona, estante e pilhas de livros"></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== SEGUNDO BANNER ===== -->
+    <section class="banner" aria-label="Convite para explorar o acervo">
+      <img class="banner__imagem" src="assets/imagens/banner-acervo.jpg"
+        alt="Corredor de biblioteca com estantes cheias de livros coloridos">
+    </section>
+
+    <!-- ===== NOSSOS LIVROS ===== -->
+    <section class="livros" id="livros" aria-labelledby="titulo-livros">
+      <div class="container">
+        <h2 class="secao__titulo" id="titulo-livros">Nossos livros</h2>
+
+        <div class="livros__grade">
+
+          <!-- Cada card faz sentido sozinho, por isso é <article> -->
+          <article class="card">
+            <h3 class="card__titulo">Lógica de Programação</h3>
+            <img class="card__imagem" src="assets/imagens/livro-1.jpg" alt="Código de programação em uma tela de computador">
+            <p class="card__texto">Fundamentos de algoritmos, estruturas de decisão e repetição para quem está começando.</p>
+            <a class="botao" href="#livros" aria-label="Saiba mais sobre o livro Lógica de Programação">Saiba mais</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card__titulo">Banco de Dados</h3>
+            <img class="card__imagem" src="assets/imagens/livro-2.jpg" alt="Rack de servidores com cabos de rede laranja">
+            <p class="card__texto">Modelagem, SQL e boas práticas para armazenar e consultar informações com segurança.</p>
+            <a class="botao" href="#livros" aria-label="Saiba mais sobre o livro Banco de Dados">Saiba mais</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card__titulo">Engenharia de Software</h3>
+            <img class="card__imagem" src="assets/imagens/livro-3.jpg" alt="Mão fixando post-its em um quadro de planejamento">
+            <p class="card__texto">Processos, requisitos e metodologias ágeis para construir sistemas de qualidade.</p>
+            <a class="botao" href="#livros" aria-label="Saiba mais sobre o livro Engenharia de Software">Saiba mais</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card__titulo">Redes de Computadores</h3>
+            <img class="card__imagem" src="assets/imagens/livro-4.jpg" alt="Cabos de rede azuis conectados a um switch">
+            <p class="card__texto">Protocolos, topologias e conceitos essenciais de comunicação entre dispositivos.</p>
+            <a class="botao" href="#livros" aria-label="Saiba mais sobre o livro Redes de Computadores">Saiba mais</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card__titulo">Design Web</h3>
+            <img class="card__imagem" src="assets/imagens/livro-5.jpg" alt="Notebook entreaberto com reflexos coloridos sobre o teclado">
+            <p class="card__texto">HTML, CSS e princípios de usabilidade para criar interfaces modernas e responsivas.</p>
+            <a class="botao" href="#livros" aria-label="Saiba mais sobre o livro Design Web">Saiba mais</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card__titulo">Gestão de Projetos</h3>
+            <img class="card__imagem" src="assets/imagens/livro-6.jpg" alt="Equipe reunida em frente a quadros de projeto">
+            <p class="card__texto">Planejamento, prazos e acompanhamento de equipes do início à entrega do projeto.</p>
+            <a class="botao" href="#livros" aria-label="Saiba mais sobre o livro Gestão de Projetos">Saiba mais</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AS UNIDADES ===== -->
+    <section class="unidades" id="unidades" aria-labelledby="titulo-unidades">
+      <div class="container">
+        <h2 class="secao__titulo" id="titulo-unidades">As unidades</h2>
+
+        <article class="unidade">
+          <img class="unidade__imagem" src="assets/imagens/unidade-1.jpg" alt="Auditório universitário com estudantes assistindo a uma aula">
+          <div class="unidade__texto">
+            <h3>Unidade 1</h3>
+            <p>
+              Espaço amplo com salas de leitura, computadores para pesquisa e atendimento de
+              bibliotecários para orientar trabalhos acadêmicos e normas de citação.
+            </p>
+          </div>
+        </article>
+
+        <article class="unidade">
+          <img class="unidade__imagem" src="assets/imagens/unidade-2.jpg" alt="Grande salão de leitura com mesas de estudo e luminárias">
+          <div class="unidade__texto">
+            <h3>Unidade 2</h3>
+            <p>
+              Ambiente voltado ao estudo em grupo, com cabines individuais, mesas colaborativas
+              e acesso rápido ao acervo físico e digital.
+            </p>
+          </div>
+        </article>
+
+        <article class="unidade">
+          <img class="unidade__imagem" src="assets/imagens/unidade-3.jpg" alt="Pessoas trabalhando em computadores em um espaço amplo e iluminado">
+          <div class="unidade__texto">
+            <h3>Unidade 3</h3>
+            <p>
+              Unidade com foco em tecnologia, equipada com laboratório de informática e
+              acervo especializado em computação e design.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CONTATOS ===== -->
+    <section class="contatos" id="contatos" aria-labelledby="titulo-contatos">
+      <div class="container contatos__conteudo">
+        <div class="contatos__texto">
+          <h2 class="secao__titulo" id="titulo-contatos">Contatos</h2>
+          <p>
+            Dúvidas sobre o acervo, empréstimos ou acesso à plataforma? Nossa equipe está pronta
+            para ajudar de segunda a sexta, das 8h às 21h.
+          </p>
+          <!-- <address> é a tag semântica para informações de contato -->
+          <address>
+            <p>E-mail: <a href="mailto:biblioteca@exemplo.edu.br">biblioteca@exemplo.edu.br</a></p>
+            <p>Telefone: <a href="tel:+551100000000">(11) 0000-0000</a></p>
+          </address>
+        </div>
+
+        <img class="contatos__imagem" src="assets/imagens/contatos.jpg" alt="Duas mulheres olhando juntas para a tela de um notebook">
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="rodape">
+    <p>&copy; 2026 Biblioteca Digital UniFECAF. Projeto acadêmico da disciplina Design Web.</p>
+  </footer>
+
+</body>
+
+</html>

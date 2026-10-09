@@ -1,0 +1,471 @@
+/* =========================================================
+   Biblioteca Digital UniFECAF - style.css
+
+   Abordagem: MOBILE-FIRST.
+   Os estilos base valem para celular; as media queries
+   (min-width) vão ampliando o layout para telas maiores.
+
+   Índice:
+   1. Variáveis (paleta, fonte, medidas)
+   2. Reset e base
+   3. Utilitários (container, título de seção, foco, atalho)
+   4. Cabeçalho e menu
+   5. Banners
+   6. Sobre
+   7. Livros (cards)
+   8. Unidades
+   9. Contatos
+   10. Rodapé
+   11. Preferência por menos movimento
+   ========================================================= */
+
+
+/* ---------- 1. VARIÁVEIS ----------
+   Um só lugar para mudar a identidade visual inteira.
+   Contrastes calculados contra WCAG (mínimo 4.5:1 para texto):
+   - branco sobre azul-escuro ........ ~13:1
+   - branco sobre azul-principal ..... ~6.8:1
+   - verde-destaque sobre azul-escuro  ~7:1
+   - azul-principal sobre cinza-claro  ~5.8:1
+   Confirme os valores finais em webaim.org/resources/contrastchecker */
+:root {
+  --azul-principal: #0A5BA8;   /* azul institucional (botões, links) */
+  --azul-escuro: #0B2F5B;      /* blocos escuros alternados */
+  --azul-profundo: #071C38;    /* menu, unidades e rodapé */
+  --verde-destaque: #2DD4A0;   /* detalhes: sublinhados, foco, títulos */
+  --branco: #FFFFFF;
+  --cinza-claro: #E8EEF5;      /* bloco claro de contatos */
+  --texto-escuro: #1B2635;     /* texto sobre fundos claros */
+
+  --fonte: "Poppins", Arial, Helvetica, sans-serif;
+  --raio: 12px;
+  --largura-max: 1100px;
+}
+
+
+/* ---------- 2. RESET E BASE ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* padding e borda entram na largura declarada */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* o menu fixo não cobre o título ao clicar num link */
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  line-height: 1.6;
+  color: var(--branco);
+  background: var(--azul-profundo);
+}
+
+/* Imagens nunca estouram a largura e mantêm a proporção */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Todas as seções do <main> ganham espaçamento vertical.
+   Os banners sobrescrevem isso (a classe .banner é mais específica). */
+main > section {
+  padding-block: 3rem;
+}
+
+
+/* ---------- 3. UTILITÁRIOS ---------- */
+
+/* Limita a largura do conteúdo e centraliza, deixando 1rem de folga nas laterais */
+.container {
+  width: min(100% - 2rem, var(--largura-max));
+  margin-inline: auto;
+}
+
+.secao__titulo {
+  position: relative;
+  margin: 0 0 2rem;
+  padding-bottom: 0.75rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Barrinha verde sob o título */
+.secao__titulo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 3rem;
+  height: 4px;
+  background: var(--verde-destaque);
+  border-radius: 2px;
+}
+
+/* Foco visível para quem navega com teclado */
+:focus-visible {
+  outline: 3px solid var(--verde-destaque);
+  outline-offset: 3px;
+}
+
+/* Em fundo claro o foco verde some, então trocamos por azul */
+.botao:focus-visible,
+.contatos a:focus-visible {
+  outline-color: var(--azul-principal);
+}
+
+/* Atalho "Pular para o conteúdo": escondido até receber foco */
+.pular-conteudo {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 200;
+  padding: 0.75rem 1rem;
+  background: var(--verde-destaque);
+  color: var(--azul-profundo);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.pular-conteudo:focus {
+  top: 0;
+}
+
+
+/* ---------- 4. CABEÇALHO E MENU ---------- */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--azul-profundo);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.menu__lista {
+  display: flex;
+  flex-wrap: wrap;            /* se faltar espaço, os itens quebram de linha */
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0.5rem;
+  list-style: none;
+}
+
+.menu__link {
+  display: block;
+  padding: 0.75rem 0.75rem;   /* área de toque confortável no celular */
+  color: var(--branco);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.menu__link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Página atual: sublinhado verde, igual ao item destacado do protótipo */
+.menu__link--ativo {
+  border-bottom-color: var(--verde-destaque);
+}
+
+
+/* ---------- 5. BANNERS ---------- */
+.banner {
+  position: relative;
+  padding: 0;
+}
+
+.banner__imagem {
+  width: 100%;
+  height: clamp(180px, 35vw, 420px); /* altura cresce com a tela, com limites */
+  object-fit: cover;                 /* corta a imagem em vez de distorcer */
+}
+
+/* Película escura sobre o primeiro banner para o título ter contraste */
+.banner--principal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 28, 56, 0.85), rgba(7, 28, 56, 0.2));
+}
+
+.banner__titulo {
+  position: absolute;
+  z-index: 1;                       /* fica acima da película */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: min(100% - 2rem, var(--largura-max));
+  margin: 0 auto;
+  padding-bottom: 1.25rem;
+  font-size: clamp(1.4rem, 5vw, 2.6rem);
+  line-height: 1.2;
+}
+
+
+/* ---------- 6. SOBRE ---------- */
+.sobre {
+  background: var(--azul-escuro);
+}
+
+/* Celular: tudo empilhado (texto, imagem, texto) */
+.sobre__conteudo {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.sobre__conteudo p {
+  margin: 0;
+}
+
+.sobre__imagem {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--raio);
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.galeria img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--raio);
+}
+
+
+/* ---------- 7. LIVROS ---------- */
+.livros {
+  background: var(--azul-escuro);
+}
+
+/* auto-fit + minmax: o navegador decide quantas colunas cabem.
+   Cada coluna tem no mínimo 300px (ou 100% em telas muito estreitas).
+   Resultado: 3 colunas no desktop, 2 no tablet, 1 no celular. */
+.livros__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--branco);
+  color: var(--texto-escuro);
+  border-radius: var(--raio);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card__titulo {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--azul-escuro);
+}
+
+.card__imagem {
+  width: 100%;
+  max-width: 160px;
+  aspect-ratio: 3 / 4;   /* proporção de capa de livro */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card__texto {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.botao {
+  display: inline-block;
+  margin-top: auto;      /* empurra o botão para o fim do card: botões alinhados */
+  padding: 0.75rem 1.5rem;
+  background: var(--azul-principal);
+  color: var(--branco);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+.botao:hover {
+  background: var(--azul-escuro);
+}
+
+
+/* ---------- 8. UNIDADES ---------- */
+.unidades {
+  background: var(--azul-profundo);
+}
+
+.unidade {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.unidade:last-child {
+  margin-bottom: 0;
+}
+
+.unidade__imagem {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--raio);
+}
+
+.unidade__texto h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--verde-destaque);
+}
+
+.unidade__texto p {
+  margin: 0;
+}
+
+
+/* ---------- 9. CONTATOS ---------- */
+.contatos {
+  background: var(--cinza-claro);
+  color: var(--texto-escuro);
+}
+
+.contatos .secao__titulo {
+  color: var(--azul-escuro);
+}
+
+.contatos__conteudo {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.contatos__texto p {
+  margin: 0 0 1rem;
+}
+
+.contatos address {
+  font-style: normal; /* <address> vem em itálico por padrão */
+}
+
+.contatos a {
+  color: var(--azul-principal);
+  font-weight: 600;
+}
+
+.contatos a:hover {
+  color: var(--azul-escuro);
+}
+
+.contatos__imagem {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--raio);
+}
+
+
+/* ---------- 10. RODAPÉ ---------- */
+.rodape {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  background: var(--azul-profundo);
+  border-top: 4px solid var(--azul-principal);
+}
+
+.rodape p {
+  margin: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE (mobile-first: só acrescentamos o que muda)
+   ========================================================= */
+
+/* Tablet em diante */
+@media (min-width: 768px) {
+  .menu__lista {
+    justify-content: flex-end;   /* menu à direita, como no protótipo */
+    width: min(100% - 2rem, var(--largura-max));
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  .menu__link {
+    padding-inline: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .galeria {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .unidade {
+    grid-template-columns: 1fr 2fr;  /* imagem à esquerda, texto à direita */
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .contatos__conteudo {
+    grid-template-columns: 2fr 1fr;  /* texto à esquerda, imagem à direita */
+  }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+  .sobre__conteudo {
+    grid-template-columns: repeat(3, 1fr); /* texto | imagem | texto */
+    gap: 2rem;
+  }
+}
+
+
+/* ---------- 11. PREFERÊNCIA POR MENOS MOVIMENTO ----------
+   Respeita quem ativou "reduzir movimento" no sistema operacional. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
